@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0a1116">
     <title>Bar Brawlers — Kafese gir</title>
-    <script type="module" crossorigin src="./assets/index-CSPINFDh.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-HlxYNXeW.css">
+    <script type="module" crossorigin src="./assets/index-D4xqI3Da.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-s5mIfraY.css">
   </head>
   <body>
     <canvas id="arena" tabindex="0" aria-label="Dövüş arenası"></canvas>
-    <header class="masthead"><a class="brand" href="./"><span class="brand-mark">B/B</span><span>BAR BRAWLERS<small>UNDERGROUND FIGHT CLUB</small></span></a><div class="header-actions"><span class="version"><i></i> PROTOTİP 01</span><button id="camera-toggle" class="icon-button" aria-label="Birinci şahıs kameraya geç" aria-pressed="false">KAMERA: 3. ŞAHIS · V</button><button id="sound" class="icon-button" aria-label="Sesi aç">SES KAPALI</button><button id="exit" class="icon-button" hidden>MENÜYE DÖN</button></div></header>
+    <div id="damage-flash" aria-hidden="true"></div><header class="masthead"><a class="brand" href="./"><span class="brand-mark">B/B</span><span>BAR BRAWLERS<small>UNDERGROUND FIGHT CLUB</small></span></a><div class="header-actions"><span class="version"><i></i> PROTOTİP 01</span><button id="camera-toggle" class="icon-button" aria-label="Birinci şahıs kameraya geç" aria-pressed="false">KAMERA: 3. ŞAHIS · V</button><button id="sound" class="icon-button" aria-label="Sesi aç">SES KAPALI</button><button id="exit" class="icon-button" hidden>MENÜYE DÖN</button></div></header>
     <main id="menu" class="menu">
       <div class="eyebrow"><span></span> OCTAGON / AYAKTA DÖVÜŞ</div><h1>MESAFENİ<br>KORU.<br><em>ANINI SEÇ.</em></h1><p class="intro">Her vuruş bir karar.<br>Her açık, bir fırsat.</p>
       <label for="name">KAFESE HANGİ İSİMLE GİRİYORSUN?</label><input id="name" maxlength="20" placeholder="Dövüşçü adı" value="Dövüşçü" autocomplete="nickname">
@@ -27,8 +27,10 @@
     </section><div id="countdown" class="countdown" hidden></div><div id="hit-callout" class="hit-callout"></div>
     <section id="result" class="panel result" hidden aria-label="Maç sonucu"><div class="eyebrow" id="result-reason">MAÇ SONU</div><h2 id="result-title">RAUNT BİTTİ.</h2><p id="result-detail"></p><button id="rematch" class="solid-button">RÖVANŞ <span>↗</span></button><button id="result-exit" class="text-button">← Ana menü</button></section>
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
-    <aside id="controls" class="controls" hidden aria-label="Kontroller"><div class="selection"><span id="selection-mode">SALDIRI</span><strong id="selection-name">Direkt</strong><small id="target-name">BAŞ</small></div><div class="move-list" id="move-list"></div><div class="control-hints"><span><kbd>W A S D</kbd> Hareket</span><span><kbd>SOL / SAĞ FARE</kbd> Taraf</span><span><kbd>SPACE</kbd> Gard</span><span><kbd>SHIFT</kbd> Gövde</span></div></aside>
+    <div id="first-person-status" hidden><strong id="guard-feedback"></strong><span id="look-status"></span></div><aside id="controls" class="controls" hidden aria-label="Kontroller"><div class="selection"><span id="selection-mode">SALDIRI</span><strong id="selection-name">Direkt</strong><small id="target-name">BAŞ</small></div><div class="move-list" id="move-list"></div><div class="control-hints"><span><kbd>W A S D</kbd> Hareket</span><span><kbd>SOL / SAĞ FARE</kbd> Taraf</span><span><kbd>SPACE</kbd> Gard</span><span><kbd>SHIFT</kbd> Gövde</span></div></aside>
     <footer><span><i></i> İSTANBUL UNDERGROUND</span><span id="telemetry">3 DAKİKA · 1 RAUNT · GERÇEK ZAMANLI</span><button id="help-toggle" class="text-button">KONTROLLER ?</button></footer>
-    <dialog id="help"><h2>KAFESİN KURALLARI</h2><p><b>WASD:</b> Rakibe yaklaş, uzaklaş ve çevresinde dolaş.</p><p><b>1–5:</b> Direkt, kroşe, aparkat, alçak tekme, yüksek tekme.</p><p><b>Sol / sağ fare:</b> Seçtiğin saldırıyı o tarafla yap. Yumrukta <b>Shift</b> gövdeyi hedefler.</p><p><b>Space + 1–4:</b> Yüksek gard, alçak gard, alçak tekme gardı, yüksek tekme gardı. <b>Space + sol/sağ fareyi basılı tut:</b> Kendi solunu/sağını koru.</p><p>Saldırı toparlanmadan gard başlayamaz. Garddayken stamina yenilenmez; dinlenmek için mesafe aç. Baş hasarı nakavt getirir, süre sonunda verilen hasar puanı kazanır.</p><button id="help-close" class="solid-button">ANLADIM</button></dialog>
+    <dialog id="help"><h2>KAFESİN KURALLARI</h2><p><b>WASD:</b> Rakibe yaklaş, uzaklaş ve çevresinde dolaş.</p><p><b>1–5:</b> Direkt, kroşe, aparkat, alçak tekme, yüksek tekme.</p><p><b>Sol / sağ fare:</b> Seçtiğin saldırıyı o tarafla yap. Yumrukta <b>Shift</b> gövdeyi hedefler.</p><p><b>Space + 1–4:</b> Yüksek gard, alçak gard, alçak tekme gardı, yüksek tekme gardı. <b>Space + sol/sağ fareyi basılı tut:</b> Kendi solunu/sağını koru.</p><p><b>V:</b> Birinci / üçüncü şahıs kamera. <b>F:</b> Birinci şahısta fareyle bakışı aç/kapat. <b>Orta fare + sürükle:</b> Kilitsiz bakış. <b>R:</b> Rakibe ortala. <b>Escape:</b> Fareyi serbest bırak; serbestken yardım aç.</p><p>Fareyle bakış yalnız çevrene bakmak içindir; dövüşçün rakibe yönelir. Kameralar aynı saldırı ve gard kurallarını kullanır.</p><p>Saldırı toparlanmadan gard başlayamaz. Garddayken stamina yenilenmez; dinlenmek için mesafe aç. Baş hasarı nakavt getirir, süre sonunda verilen hasar puanı kazanır.</p><button id="help-close" class="solid-button">ANLADIM</button></dialog>
   </body>
 </html>
+
+
